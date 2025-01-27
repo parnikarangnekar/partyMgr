@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-definition-2.1.xsd">
+    <entity entity-name="TParty" package="DataModel">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="partyTypeId" type="id" />
+        <field name="description" type="text-medium"/>
+        <field name="createdData" type="date-time"/>
+        <relationship type="one" title="PartyType" related="moqui.basic.Enumeration" short-alias="type">
+            <key-map field-name="partyTypeId"/>
+        </relationship>
+        <master>
+            <detail relationship="TPerson"/>
+            <detail relationship="TPartyGroup"/>
+        </master>
+
+    </entity>
+    <entity entity-name="TPerson" package="DataModel">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="description" type="text-medium"/>
+        <field name="createdData" type="date-time"/>
+        <field name="firstName" type="text-medium"/>
+        <field name="middleName" type="text-medium"/>
+        <field name="lastName" type="text-medium"/>
+        <relationship type="one" related="TParty"/>
+    </entity>
+
+    <entity entity-name="TContactMech" package="DataModel" short-alias="contactMechs">
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="contactMechTypeId" type="id"/>
+        <field name="infoString" type="text-medium"/>
+        <field name="gatewayCimId" type="text-short" enable-audit-log="update"/>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Status of order" enumTypeId="ContactMecType"/>
+            <moqui.basic.Enumeration description="Phone number" enumId="TEL_NO" enumTypeId="ContactMecType"/>
+            <moqui.basic.Enumeration description="Address" enumId="POSTAL_ADD" enumTypeId="ContactMecType"/>
+        </seed-data>
+    </entity>
+
+    <entity entity-name="TPartyGroup" package="DataModel">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="description" type="text-medium"/>
+        <field name="createdData" type="date-time"/>
+        <field name="groupName" type="text-medium"/>
+        <relationship type="one" related="TParty"/>
+    </entity>
+
+</entities>
+

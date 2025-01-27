@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-definition-3.xsd">
+<!--        <entity entity-name="TOrderHeader" package="DataModel">-->
+<!--            <field name="orderId" type="id" is-pk="true"></field>-->
+<!--            <field name="statusId" type="id"></field>-->
+<!--            <field name="createdDate" type="date-time"></field>-->
+<!--            <field name="despription" type="text-long"></field>-->
+<!--            <relationship type="one" related="Enumeration" title="OrderStatusType">-->
+<!--            </relationship>-->
+<!--            <seed-data>-->
+<!--                <moqui.basic.EnumerationType description="Status of order" enumTypeId="OrderStatusType"/>-->
+<!--                <moqui.basic.Enumeration description="Order is approved" enumId="ORDER_APPROVED" enumTypeId="OrderStatusType"/>-->
+<!--            </seed-data>-->
+<!--            <master>-->
+<!--                <detail relationship="TOrderItem"/>-->
+<!--            </master>-->
+<!--        </entity>-->
+
+        <entity entity-name="TOrderItem" package="DataModel">
+            <field name="orderItemSeqId" type="id" is-pk="true"></field>
+            <field name="orderId" type="id" is-pk="true"></field>
+            <relationship type="one" related="OrderHeader" />
+            <seed-data>
+                <moqui.basic.EnumerationType description="Status of order item" enumTypeId="OrderItemStatusType"/>
+                <moqui.basic.Enumeration description="Item is approved" enumId="ITEM_APPROVED" enumTypeId="OrderItemStatusType"/>
+                <moqui.basic.Enumeration description="Item is canceled" enumId="ITEM_CANCELED" enumTypeId="OrderItemStatusType"/>
+            </seed-data>
+
+        </entity>
+
+
+</entities>
