@@ -9,6 +9,12 @@
         <relationship type="one" title="PartyType" related="moqui.basic.Enumeration" short-alias="type">
             <key-map field-name="partyTypeId"/>
         </relationship>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Type of party" enumTypeId="PartyType"/>
+            <moqui.basic.Enumeration description="Person" enumId="PERSON" enumTypeId="PartyType"/>
+            <moqui.basic.Enumeration description="Group" enumId="ORGANISATION" enumTypeId="PartyType"/>
+        </seed-data>
+
         <master>
             <detail relationship="TPerson"/>
             <detail relationship="TPartyGroup"/>

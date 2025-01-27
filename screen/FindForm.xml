@@ -10,6 +10,14 @@
         </actions>
         <default-response url="."/>
     </transition>
+    <transition name="creategroup">
+        <actions>
+            <set field="partyTypeEnumId" value="PERSON"/>
+            <service-call name="create#DataModel.TParty" in-map="context" out-map="context"/>
+            <service-call name="create#DataModel.TPerson" in-map="context" out-map="context"/>
+        </actions>
+        <default-response url="."/>
+    </transition>
     <widgets>
         <container-dialog id="person" button-text="createPerson">
             <form-single name="Person" transition="createPerson">
