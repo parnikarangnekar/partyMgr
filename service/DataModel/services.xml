@@ -10,7 +10,7 @@
             <parameter name="partyId" required="true"/>
         </out-parameters>
     </service>
-    <service verb="get" noun="DataModel.TParty" displayName="Create a party" type="entity-auto" allow-remote="true" name="CreateParty">
+    <service verb="get" noun="DataModel.TParty" displayName="get a party" type="entity-auto" allow-remote="true" name="CreateParty">
         <in-parameters>
             <auto-parameters include="pk"/>
             <parameter name="partyId" required="true"/>
@@ -19,6 +19,17 @@
             <auto-parameters include="pk" required="true"/>
             <parameter name="partyId" required="true"/>
         </out-parameters>
+    </service>
+
+<!--    <service verb="create" noun="DataModel.TPerson" displayName="Create a person" type="entity-auto" allow-remote="true" name="CreateParty">-->
+<!--        <in-parameters>-->
+<!--            <auto-parameters include="pk"/>-->
+<!--            <parameter name="partyId" required="true"/>-->
+<!--        </in-parameters>-->
+<!--        <out-parameters>-->
+<!--            <auto-parameters include="pk" required="true"/>-->
+<!--            <parameter name="partyId" required="true"/>-->
+<!--        </out-parameters>-->
     </service>
 
     <service verb="update" noun="DataModel.TOrderHeader" displayName="Create a party" type="entity-auto" allow-remote="true" name="CreateParty">

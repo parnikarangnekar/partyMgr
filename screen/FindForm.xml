@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
-    <actions>
-        <entity-find entity-name="DataModel.Party" list="partyList">
-            <search-form-inputs/></entity-find>
-    </actions>
+        xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-3.xsd"
+        require-authentication="anonymous-all">
+    <transition name="createPerson">
+        <actions>
+            <set field="partyTypeEnumId" value="PERSON"/>
+            <service-call name="create#DataModel.TParty" in-map="context" out-map="context"/>
+            <service-call name="create#DataModel.TPerson" in-map="context" out-map="context"/>
+        </actions>
+        <default-response url="."/>
+    </transition>
     <widgets>
-        <form-list name="ListParty" list="partyList" header-dialog="true" skip-form="true">
-            <auto-fields-entity entity-name="DataModel.Party" field-type="find-display"/>
-        </form-list>
+        <container-dialog id="person" button-text="createPerson">
+            <form-single name="Person" transition="createPerson">
+                <auto-fields-entity entity-name="DataModel.TParty" field-type="edit" include="pk"/>
+                <auto-fields-entity entity-name="DataModel.TPerson" field-type="edit" include="nonpk"/>
+                <field name="submitButton"><default-field title="Create"><submit/></default-field></field>
+            </form-single>
+        </container-dialog>
     </widgets>
 </screen>
